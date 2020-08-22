@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8294505239404712775}
   - component: {fileID: 8294505239404712774}
   - component: {fileID: 8294505239404712769}
+  - component: {fileID: 7579401098579508311}
   m_Layer: 0
   m_Name: PinkBird
   m_TagString: Untagged
@@ -96,9 +97,21 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 4f916382c7581b24e99ec08a0bacf9f2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7579401098579508311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8294505239404712768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9551a9ee8907a84438fa6e0807c1b3ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
