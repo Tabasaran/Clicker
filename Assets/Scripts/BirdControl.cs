@@ -9,8 +9,8 @@ public class BirdControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = Random.Range(1f, 5f);
-        transform.localScale *= Random.Range(0.4f, 1.2f);
+        speed = Random.Range(1f, 6f);
+        transform.localScale *= Random.Range(0.5f, 1.5f);
 
         if (transform.position.x > 0f)
         {
@@ -27,5 +27,6 @@ public class BirdControl : MonoBehaviour
 
         if (Mathf.Abs(transform.position.x) > 10.5f) 
             Destroy(gameObject);
+
     }
 }

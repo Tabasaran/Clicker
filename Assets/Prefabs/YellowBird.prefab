@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 9136527544892427093}
   - component: {fileID: 9136527544892427082}
   - component: {fileID: -1371568936317420050}
+  - component: {fileID: 1064463985}
   m_Layer: 0
   m_Name: YellowBird
-  m_TagString: Untagged
+  m_TagString: Bird
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,3 +116,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9551a9ee8907a84438fa6e0807c1b3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &1064463985
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9136527544892427083}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.44682217, y: 0.06877887}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 7.16, y: 6.32}
+    newSize: {x: 7.16, y: 6.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 5.3039656, y: 3.9815638}
+  m_EdgeRadius: 0

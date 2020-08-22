@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 8294505239404712774}
   - component: {fileID: 8294505239404712769}
   - component: {fileID: 7579401098579508311}
+  - component: {fileID: 2709422745245137463}
   m_Layer: 0
   m_Name: PinkBird
-  m_TagString: Untagged
+  m_TagString: Bird
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,3 +116,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9551a9ee8907a84438fa6e0807c1b3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &2709422745245137463
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8294505239404712768}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.44047785, y: 0.0000011920929}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6.67, y: 5.86}
+    newSize: {x: 6.67, y: 5.86}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.6489773, y: 3.6823926}
+  m_EdgeRadius: 0
