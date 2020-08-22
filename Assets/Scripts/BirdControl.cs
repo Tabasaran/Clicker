@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿
 using UnityEngine;
 
 public class BirdControl : MonoBehaviour
@@ -26,5 +24,8 @@ public class BirdControl : MonoBehaviour
     void Update()
     {
         transform.Translate(Vector3.right * speed * Time.deltaTime);
+
+        if (Mathf.Abs(transform.position.x) > 10.5f) 
+            Destroy(gameObject);
     }
 }
