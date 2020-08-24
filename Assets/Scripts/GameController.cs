@@ -5,14 +5,17 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
-
     public GameObject yellowBird;
     public GameObject pinkBird;
     public GameObject deadEffect;
 
+    private float maxX = 10f;
+    private float maxY = 4.5f;
+    private float minX = -10;
+    private float minY = -4.5f;
+
     public Slider gameDuratioSlider;
-    private float gameDurationTime;
-    
+    public Slider bonusTime;
 
     public Text scoreText;
 
@@ -27,8 +30,9 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        gameDurationTime = 30f;
-        gameDuratioSlider.maxValue = gameDurationTime;
+        gameDuratioSlider.maxValue = 30f;
+        gameDuratioSlider.value = 30f;
+
         _score = 10;
 
         StartCoroutine("SpawnBird");
@@ -36,10 +40,10 @@ public class GameController : MonoBehaviour
 
     private void Update()
     {
-        gameDurationTime -= Time.deltaTime;
-        gameDuratioSlider.value = gameDurationTime;
 
-        if (_score == 0 || gameDurationTime < 0.01f)
+        gameDuratioSlider.value -= Time.deltaTime;
+
+        if (_score == 0 || gameDuratioSlider.value < 0.01f)
         {
             SceneManager.LoadScene("Game");
         }
@@ -62,9 +66,19 @@ public class GameController : MonoBehaviour
                     Destroy(hit.collider.gameObject);
 
                     _score++;
+                    bonusTime.value++;
+                    if (bonusTime.value == 5)
+                    {
+                        gameDuratioSlider.value += 3f;
+                        DroppingBonusTimer();
+                    }
                     ShowScore();
                 }
+                else 
+                    DroppingBonusTimer();
             }
+            else
+                DroppingBonusTimer();
         }
     }
 
@@ -73,11 +87,16 @@ public class GameController : MonoBehaviour
         scoreText.text = _score.ToString();
     }
 
+    public void DroppingBonusTimer()
+    {
+        bonusTime.value = 0;
+    }
+
     IEnumerator SpawnBird()
     {
         //random position
-        spawnPosition.x = Random.Range(0, 2) == 1 ? -10: 10;
-        spawnPosition.y = Random.Range(-4.5f, 4.5f);
+        spawnPosition.x = Random.Range(0, 2) == 1 ? minX: maxX;
+        spawnPosition.y = Random.Range(minY, maxY);
 
         if (Random.Range(0, 2) == 1)
             Instantiate(yellowBird, spawnPosition, Quaternion.identity);
