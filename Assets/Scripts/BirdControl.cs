@@ -25,8 +25,7 @@ public class BirdControl : MonoBehaviour
     {
         transform.Translate(Vector3.right * speed * Time.deltaTime);
 
-        if (Mathf.Abs(transform.position.x) > 10.5f) 
+        if (Mathf.Abs(transform.position.x) > 10.5f)
             Destroy(gameObject);
-
     }
 }

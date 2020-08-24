@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour
 
     public GameObject yellowBird;
     public GameObject pinkBird;
-    public GameObject fireExplosion;
+    public GameObject deadEffect;
 
     private Vector3 spawnPosition;
 
@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Bird"))
                 {
-                    Instantiate(fireExplosion, hit.transform.position, Quaternion.identity);
+                    Instantiate(deadEffect, hit.transform.position, Quaternion.identity);
                     Destroy(hit.collider.gameObject);
                 }
             }
@@ -38,6 +38,7 @@ public class GameController : MonoBehaviour
 
     IEnumerator SpawnBird()
     {
+        //random position
         spawnPosition.x = Random.Range(0, 2) == 1 ? -10: 10;
         spawnPosition.y = Random.Range(-4.5f, 4.5f);
 
