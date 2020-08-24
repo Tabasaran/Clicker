@@ -5,10 +5,12 @@ public class BirdControl : MonoBehaviour
 {
 
     private float speed;
+    private GameController gameController;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
         speed = Random.Range(1f, 6f);
         transform.localScale *= Random.Range(0.5f, 1.5f);
 
@@ -26,6 +28,11 @@ public class BirdControl : MonoBehaviour
         transform.Translate(Vector3.right * speed * Time.deltaTime);
 
         if (Mathf.Abs(transform.position.x) > 10.5f)
+        {
             Destroy(gameObject);
+            gameController.score -= 1;
+            gameController.ShowScore();
+        }
+            
     }
 }

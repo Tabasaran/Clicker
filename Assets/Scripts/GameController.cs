@@ -1,7 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -10,16 +10,46 @@ public class GameController : MonoBehaviour
     public GameObject pinkBird;
     public GameObject deadEffect;
 
+    public Slider gameDuratioSlider;
+    private float gameDurationTime;
+    
+
+    public Text scoreText;
+
+    private int _score;
+    public int score { 
+        get { return _score; } 
+        set { _score = value; } 
+    }
+
     private Vector3 spawnPosition;
+
 
     void Start()
     {
+        gameDurationTime = 30f;
+        gameDuratioSlider.maxValue = gameDurationTime;
+        _score = 10;
+
         StartCoroutine("SpawnBird");
     }
 
     private void Update()
     {
+        gameDurationTime -= Time.deltaTime;
+        gameDuratioSlider.value = gameDurationTime;
 
+        if (_score == 0 || gameDurationTime < 0.01f)
+        {
+            SceneManager.LoadScene("Game");
+        }
+
+        KillingBirds();
+ 
+    }
+
+    private void KillingBirds()
+    {
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
@@ -30,11 +60,18 @@ public class GameController : MonoBehaviour
                 {
                     Instantiate(deadEffect, hit.transform.position, Quaternion.identity);
                     Destroy(hit.collider.gameObject);
+
+                    _score++;
+                    ShowScore();
                 }
             }
         }
     }
 
+    public void ShowScore()
+    {
+        scoreText.text = _score.ToString();
+    }
 
     IEnumerator SpawnBird()
     {
