@@ -11,17 +11,9 @@ public class MainMenuController : MonoBehaviour
 
     void Start()
     {
-        if (!PlayerPrefs.HasKey("bestScore"))
-        {
-            PlayerPrefs.SetInt("bestScore", 0);
-        }
-        if (!PlayerPrefs.HasKey("lastScore"))
-        {
-            PlayerPrefs.SetInt("lastScore", 0);
-        }
-
-        bestScore.text = PlayerPrefs.GetFloat("bestScore").ToString();
-        lastScore.text = PlayerPrefs.GetFloat("lastScore").ToString();
+        MusicManager.instance.audioSource.PlayOneShot(MusicManager.instance.menu);
+        bestScore.text = PlayerPrefs.GetInt("bestScore", 0).ToString();
+        lastScore.text = PlayerPrefs.GetInt("lastScore", 0).ToString();
     }
 
     public void StartGame()

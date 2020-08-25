@@ -1000,7 +1000,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c2d75ec1557f335458c3909d1b321013, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1371,7 +1371,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 225527256}
         m_TargetAssemblyTypeName: GameController, Assembly-CSharp
-        m_MethodName: GameOver
+        m_MethodName: OpenMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

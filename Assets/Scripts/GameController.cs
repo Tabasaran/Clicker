@@ -64,6 +64,8 @@ public class GameController : MonoBehaviour
             {
                 if (hit.collider.CompareTag("Bird"))
                 {
+                    MusicManager.instance.audioSource.PlayOneShot(MusicManager.instance.killBird);
+
                     Instantiate(deadEffect, hit.transform.position, Quaternion.identity);
                     Destroy(hit.collider.gameObject);
 
@@ -77,6 +79,8 @@ public class GameController : MonoBehaviour
                 }
                 else if (hit.collider.gameObject.Equals(bonus))
                 {
+                    MusicManager.instance.audioSource.PlayOneShot(MusicManager.instance.pickedBonus);
+
                     bonus.SetActive(false);
                     gameDuratioSlider.value += _bonusTime;
                 }
@@ -102,10 +106,10 @@ public class GameController : MonoBehaviour
 
     public void Restart()
     {
-        PlayerPrefs.SetFloat("lastScore", _score);
+        PlayerPrefs.SetInt("lastScore", _score);
 
-        if (PlayerPrefs.GetFloat("bestScore") < _score)
-            PlayerPrefs.SetFloat("bestScore", _score);
+        if (PlayerPrefs.GetInt("bestScore") < _score)
+            PlayerPrefs.SetInt("bestScore", _score);
 
         Time.timeScale = 1f;
         SceneManager.LoadScene("Game");
@@ -113,13 +117,19 @@ public class GameController : MonoBehaviour
 
     public void GameOver()
     {
-        PlayerPrefs.SetFloat("lastScore", _score);
+        MusicManager.instance.audioSource.PlayOneShot(MusicManager.instance.timeOver);
+        Time.timeScale = 0f;
+        PlayerPrefs.SetInt("lastScore", _score);
 
-        if (PlayerPrefs.GetFloat("bestScore") < _score)
-            PlayerPrefs.SetFloat("bestScore", _score);
+        if (PlayerPrefs.GetInt("bestScore") < _score)
+            PlayerPrefs.SetInt("bestScore", _score);
 
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("Menu");
+        StartCoroutine(LoadMenu(1));
+    }
+
+    public void OpenMenu()
+    {
+        StartCoroutine(LoadMenu(0.1f));
     }
 
     private void ShowBonus()
@@ -152,5 +162,12 @@ public class GameController : MonoBehaviour
 
         yield return new WaitForSeconds(Random.Range(.0f, 1.0f));
         StartCoroutine("SpawnBird");
+    }
+
+    IEnumerator LoadMenu(float seconds)
+    {
+        yield return new WaitForSecondsRealtime(seconds);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Menu");
     }
 }

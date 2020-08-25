@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bird
   - FxTemporaire
+  - MusicScaleBar
   layers:
   - Default
   - TransparentFX

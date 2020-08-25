@@ -9,43 +9,45 @@ public class MusicManager : MonoBehaviour
     public static MusicManager instance;
 
     // Vars for audio
-    private AudioSource audioSource;
-    public List<AudioClip> sounds;
-    private float musicScale;
+    public AudioSource audioSource;
+    public List<AudioClip> musics;
+    public float musicScale;
+    public AudioClip killBird, pickedBonus, menu, timeOver;
 
     void Awake()
     {
-        musicScale = 0.5f;
         MakeSingleton();
 
+        musicScale = PlayerPrefs.GetFloat("musicScale", 1f);
+
         audioSource = GetComponent<AudioSource>();
-
-
-
-        // Setting the music state standard to 1 so music starts playing on game load
-        if (!PlayerPrefs.HasKey("Game Initialized"))
+        if (audioSource.isPlaying == false)
         {
-            PlayerPrefs.SetInt(" Game Initialized", 123);
+            StartCoroutine(ChangeSong());
         }
-
-        StartCoroutine(ChangeSong());
-
     }
 
     IEnumerator ChangeSong()
     {
-        int randomIndex = Random.Range(0, sounds.Count);
-        audioSource.PlayOneShot(sounds[randomIndex], musicScale);
-        yield return new WaitForSecondsRealtime(sounds[randomIndex].length);
+        int randomIndex = Random.Range(0, musics.Count);
+
+        audioSource.Stop();
+        audioSource.PlayOneShot(musics[randomIndex], musicScale);
+
+        yield return new WaitForSecondsRealtime(musics[randomIndex].length);
+
         StartCoroutine(ChangeSong());
     }
 
-
-
+    public void ChangeMusic()
+    {
+        StopCoroutine(ChangeSong());
+        audioSource.Stop();
+        StartCoroutine(ChangeSong());
+    }
 
     void MakeSingleton()
     {
-
         if (instance != null)
         {
             Destroy(gameObject);
