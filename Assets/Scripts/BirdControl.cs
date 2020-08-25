@@ -7,7 +7,6 @@ public class BirdControl : MonoBehaviour
     private float speed;
     private GameController gameController;
 
-    // Start is called before the first frame update
     void Start()
     {
         gameController = GameObject.FindWithTag("GameController").GetComponent<GameController>();
@@ -22,7 +21,6 @@ public class BirdControl : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.Translate(Vector3.right * speed * Time.deltaTime);
