@@ -56,9 +56,48 @@ public class GameController : MonoBehaviour
             GameOver();
         }
 
-        if (Input.GetMouseButtonDown(0) && pausePanel.activeSelf == false)
+        Cast();
+        /*if (Input.GetMouseButtonDown(0) && pausePanel.activeSelf == false)
         {
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+
+            if (hit.collider != null)
+            {
+                if (hit.collider.CompareTag("Bird"))
+                {
+                    MusicManager.instance.audioSource.PlayOneShot(MusicManager.instance.killBird);
+
+                    Instantiate(deadEffect, hit.transform.position, Quaternion.identity);
+                    Destroy(hit.collider.gameObject);
+
+                    _score++;
+
+                    bonusTimeSlider.value++;
+                    if (bonusTimeSlider.value == bonusTimeSlider.maxValue)
+                        ShowBonus();
+
+                    ShowScore();
+                }
+                else if (hit.collider.gameObject.Equals(bonus))
+                {
+                    MusicManager.instance.audioSource.PlayOneShot(MusicManager.instance.pickedBonus);
+
+                    bonus.SetActive(false);
+                    gameDuratioSlider.value += _bonusTime;
+                }
+                else
+                    DroppingBonusTimer();
+            }
+            else
+                DroppingBonusTimer();
+        }*/
+    }
+
+    void Cast()
+    {
+        for (int i = 0; i < Input.touchCount; ++i)
+        {
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.GetTouch(i).position), Vector2.zero);
 
             if (hit.collider != null)
             {
